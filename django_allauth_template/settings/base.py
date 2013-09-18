@@ -142,6 +142,7 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
+    'django_allauth_template',
 )
 
 ALLAUTH_APPS = (

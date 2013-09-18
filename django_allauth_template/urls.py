@@ -8,16 +8,17 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls)),
     # url(r'^$', 'django_allauth_template.views.home', name='home'),
-    url(r'^', TemplateView.as_view(template_name="index.html")),
+    url(r'^', TemplateView.as_view(template_name="home.html")),
 
     url(r'^accounts/', include('allauth.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    
 )
 
 ##  local static and media settings

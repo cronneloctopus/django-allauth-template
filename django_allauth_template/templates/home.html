@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load auth_extras %}
+
+{% block content %}
+<hr>
+<h3>User Profile Data</h3>
+  {% if user.is_authenticated %}
+      <p>You're logged in as <strong>{{ user.socialaccount_set.all.0.user }}</strong>.</p>
+      <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
+      <ul>
+         <li><strong>First Name:</strong> {{ user.socialaccount_set.all.0.extra_data|dictKeyLookup:"first-name" }}</li>
+         <li><strong>Last Name: </strong>{{ user.socialaccount_set.all.0.extra_data|dictKeyLookup:"last-name" }}</li>
+          <li><strong>Email: </strong>{{ user.socialaccount_set.all.0.extra_data|dictKeyLookup:"email-address" }}</li>
+         <li><strong>Public Profile: </strong>{{ user.socialaccount_set.all.0.extra_data|dictKeyLookup:"public-profile-url" }}</li>
+      </ul>
+      <hr>
+      <h3>Extra Data</h3>
+      {% for key, value in user.socialaccount_set.all.0.extra_data.items %}
+      <ul>
+          <li><strong>{{ key }}:</strong> {{ value }}</li>
+      </ul>
+      {% endfor %}
+  {% endif %}
+{% endblock content %}
